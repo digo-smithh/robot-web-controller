@@ -19,12 +19,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, './app/public', 'home.html'));
 });
 
-app.get("/picture", (req, res) => {
+app.get("/pictures", (req, res) => {
   res.sendFile(path.join(__dirname, './app/public', 'picture.html'));
   io.emit('picRequest', "picRequest");
 });
 
-app.use('/static', express.static(__dirname + '/app/public'));
+app.use(express.static(__dirname + '/app/public'));
 
 // set port, listen for requests
 app.listen(4000, () => {
