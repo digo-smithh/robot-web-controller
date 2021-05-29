@@ -1,0 +1,302 @@
+#VRML_OBJ R2021a utf8
+Robot {
+  translation -0.10862577836162828 0.029877760741742556 0.0684459435859758
+  rotation 2.1438902503382127e-05 0.9999999989209479 -4.121258926170644e-05 2.449352832050228
+  children [
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 0.482353 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.01 0.25
+      }
+    }
+    Camera {
+      translation 6.63399e-07 0 -0.13
+      rotation 0 -1 0 5.92017e-06
+      children [
+        Transform {
+          children [
+            DEF shape_cam Shape {
+              appearance PBRAppearance {
+              }
+              geometry Sphere {
+                radius 0.01
+                subdivision 4
+              }
+            }
+          ]
+        }
+      ]
+      boundingObject USE shape_cam
+      fieldOfView 1.05
+      width 256
+      height 128
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 76.15953311253686
+        anchor 0.06 0 0.05
+      }
+      device [
+        RotationalMotor {
+          name "frenteesquerda"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06000000041183384 -7.2216581513494e-07 0.04999817585344029
+        rotation -0.3481942858429999 0.348195564800338 -0.8703565866698874 4.573977099706557
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.0235294 0.113725 0.333333
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.03
+              subdivision 24
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity -0.04077772264032886 9.31400326244328e-06 0.007172678029705218
+        angularVelocity 1.5304297496403914 0.5384556061800426 1.2880623242834288
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 35.328434153834586
+        anchor -0.06 0 0.05
+      }
+      device [
+        RotationalMotor {
+          name "frentedireita"
+        }
+      ]
+      endPoint Solid {
+        translation -0.059999999588166236 7.037650762998606e-07 0.05000183154826938
+        rotation 0.6796975509930919 -0.6797000477201691 -0.27571558589095524 3.679653498470209
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity 0.0008722419584427299 2.292258603670916e-05 -0.0422786558624124
+        angularVelocity -1.5300274752779126 0.5390832868936123 -1.287518673070361
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 76.15955723231711
+        anchor 0.06 0 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "trasesquerda"
+        }
+      ]
+      endPoint Solid {
+        translation 0.059999999588515124 -7.221218192602552e-07 -0.05000182416398412
+        rotation -0.3482035095535786 0.34820478856273457 -0.8703492064433404 4.573968701211121
+        children [
+          USE WHEEL
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity 0.00043451172837088775 -2.2926740595485644e-05 0.04181410696245109
+        angularVelocity 1.530430254705258 0.5384556134549896 1.2880617718137557
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 35.32845746441488
+        anchor -0.06 0 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "trasdireita"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06000000041148496 7.037223839324681e-07 -0.049998168435319464
+        rotation 0.6796958220385553 -0.6796983187705894 -0.2757241102329774 3.679669342580318
+        children [
+          USE WHEEL
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+        linearVelocity 0.042089031816819986 -9.318158573115923e-06 -0.007634930935960068
+        angularVelocity -1.530027035453916 0.5390834300888413 -1.2875191086687783
+      }
+    }
+    DEF DS_RIGHT DistanceSensor {
+      translation -0.0273429 0 0.124096
+      rotation 0 -1 0 2.1325853071795864
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+    }
+    DEF DS_LEFT_TRAS DistanceSensor {
+      translation 0.0532322 0 -0.107729
+      rotation 0 -1 0 0.03819530717958418
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left_tras"
+    }
+    DEF DS_RIGHT_TRAS DistanceSensor {
+      translation -0.0555 0 -0.111933
+      rotation 0 1 0 3.1034
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right_tras"
+    }
+    DEF DS_LEFT DistanceSensor {
+      translation 0.0284338 0 0.126468
+      rotation 0 -1 0 1.27079
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+    }
+    DistanceSensor {
+      translation 0 -0.00466 0.117
+      rotation -0.3309160209104186 0.33435102112747456 0.882442055761074 -1.7017
+      children [
+        Transform {
+          rotation 0 0 1 -1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 0 0
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.01
+              }
+            }
+          ]
+        }
+      ]
+      name "baixo meio"
+      lookupTable [
+        0.003 1023 0
+        0.1 0 0
+      ]
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.03 -0.00466 0.122
+      rotation -0.3309160209104186 0.33435102112747456 0.882442055761074 -1.7017
+      children [
+        Transform {
+          rotation 0 0 1 -1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 0 0
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.01
+              }
+            }
+          ]
+        }
+      ]
+      name "baixo esquerda"
+      lookupTable [
+        0.003 1023 0
+        0.1 0 0
+      ]
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.03 -0.00466 0.122
+      rotation -0.3309160209104186 0.33435102112747456 0.882442055761074 -1.7017
+      children [
+        Transform {
+          rotation 0 0 1 -1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0.333333 0
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.01
+              }
+            }
+          ]
+        }
+      ]
+      name "baixo direita"
+      lookupTable [
+        0.003 1023 0
+        0.1 0 0
+      ]
+      type "infra-red"
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "robo"
+  linearVelocity 0.0006530696611165543 3.6504733432699066e-06 -0.00023036797084922348
+  angularVelocity 0.00017334224784468395 0.5386057237479661 0.0003048490104774178
+}
