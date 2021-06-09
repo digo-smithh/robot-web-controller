@@ -14,7 +14,7 @@ async def index(request):
 async def print_message(sid, message):
     print(message)
     if(message == "p"):
-    	await sio.emit('message', "print")
+    	await sio.emit('message', "print") #botar a imagem em base64
 
 app.router.add_get('/', index)
 

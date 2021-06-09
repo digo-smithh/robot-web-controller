@@ -8,6 +8,10 @@ import sys
 import _thread
 import base64 #imports de bibliotecas a serem utilizadas
 
+from aiohttp import web
+import socketio
+import os
+
 TIME_STEP = 64
 
 #def servidor(a,b): #metodo de conectar o servidor 
@@ -25,6 +29,29 @@ TIME_STEP = 64
 #        cfile.write((r'<html><head><title> Robo </title></head><body><img style="width:70%" src="data:image/png;base64,{0}"></body></html>').format(data_uri)) 
 #        cfile.close() 
 #        csock.close()
+def servidor(a,b):
+    jaPassou = False
+    while True:
+        sio = socketio.AsyncServer()
+        app = web.Application()
+        sio.attach(app)
+        
+        async def index(request):
+            #with open(os.path.dirname(os.path.realpath(__file__)) + "/index.html") as f:
+            with open(os.path.dirname("G:\TopicosemAutomacaoeRobotica\robot-web-controller\Webots\controllers\carro_controller\index.html")) as f:
+                return web.Response(text=f.read(), content_type='text/html')
+
+        @sio.on('message')
+        async def print_message(sid, message):
+            print(message)
+            if(message == "p"):
+            	await sio.emit('message', base64.b64encode(open('imagem/imagem.jpeg', 'rb').read()).decode('utf-8')) #botar a imagem em base64
+        
+        app.router.add_get('/', index)
+        
+        if __name__ == '__main__' and jaPassou == False:
+            jaPassou = True
+            web.run_app(app)
 
 class MeuRobot:
     def __init__(self, robo):   # Robo e seus componentes juntos...
@@ -37,11 +64,8 @@ class MeuRobot:
         self.esquerda = self.robo.getDevice("ds_left")
         self.esquerda.enable(TIME_STEP)
         
-        self.direita_t = self.robo.getDevice("ds_right_tras")
-        self.direita_t.enable(TIME_STEP)
-        
-        self.esquerda_t = self.robo.getDevice("ds_left_tras")
-        self.esquerda_t.enable(TIME_STEP)
+        self.meio = self.robo.getDevice("ds_middle")
+        self.meio.enable(TIME_STEP)
         
         self.camera = self.robo.getDevice("camera")
         self.camera.enable(TIME_STEP)
@@ -69,15 +93,15 @@ class MeuRobot:
         self.dir = False
         self.esq = False
         self.img = self.camera.getImage()
-        self.cor1_m = self.baixo_m.getValue()
-        self.cor1_d = self.baixo_d.getValue()
-        self.cor1_e = self.baixo_e.getValue()
+        self.cor1_m = 521.1942621404501
+        self.cor1_d = 521.1942621404501
+        self.cor1_e = 521.1942621404501
         self.velEsq = 1.0
         self.velDir = 1.0
-        print(self.cor1_d)
 
 class TI502(MeuRobot):   #classe do robo
     def run(self):        #metodo de controle do robo
+        _thread.start_new_thread(servidor, ('salve', 'sergio')) #chama a thread com o servidor
         while self.robo.step(TIME_STEP) != -1:
             #self.camera.saveImage('imagem\imagem.jpeg', 100)  #salva imagem tirada com a camera
             self.rodas[0].setVelocity(self.velEsq) #setta as velocidades atravez de variaveis que serao mudadas durante o codigo
@@ -85,7 +109,7 @@ class TI502(MeuRobot):   #classe do robo
             self.rodas[2].setVelocity(self.velEsq)
             self.rodas[3].setVelocity(self.velDir)	
             if self.contador > 0: #contador serve para o robo voltar do desvio de um obstaculo
-                    if(self.cor2_e == 0.0 or self.cor2_d == 0.0 or self.cor2_m == 0.0 ):
+                    if(self.cor2_e == 521.1942621404501 or self.cor2_d == 521.1942621404501 or self.cor2_m == 521.1942621404501 ):
                         self.contador = 0
                     self.contador -= 7
                     if self.dir == True: #se o desvio foi para direita, ele volta para esquerda
@@ -115,12 +139,12 @@ class TI502(MeuRobot):   #classe do robo
                             self.segundo = 2
                             
                         if self.segundo == 2: #se foi pra direita (obstaculo estava na esquerda), volta para esquerda
-                            if self.esquerda_t.getValue() < 500.0:
-                                self.contador = 350
+                            #if self.esquerda_t.getValue() < 500.0:
+                            #    self.contador = 350
                                 self.esq = True
                         if self.segundo == 1: #se foi pra esquerda (obstaculo estava na direita), volta para direita
-                            if self.direita_t.getValue() < 500.0:
-                                self.contador = 350
+                            #if self.direita_t.getValue() < 500.0:
+                            #    self.contador = 350
                                 self.dir = True
                                    
                         self.velEsq = 1.0
@@ -128,14 +152,15 @@ class TI502(MeuRobot):   #classe do robo
                         self.cor2_m = self.baixo_m.getValue()
                         self.cor2_d = self.baixo_d.getValue()
                         self.cor2_e = self.baixo_e.getValue()
+
                         
                         if self.cor1_m != self.cor2_m: #verifica se a cor registrada antes eh a mesma de agora
-                            if self.cor1_d != 0.0 and self.cor2_e == 0.0: #se a da direita for diferente e a esquerda for preta, vira para direita
+                            if self.cor1_d != 521.1942621404501 and self.cor2_e == 521.1942621404501: #se a da direita for diferente e a esquerda for preta, vira para direita
                                 self.velEsq = -1.0
                                 self.velDir = 1.0
                                 self.cor1_m = self.cor2_m
                                 self.cor1_d = self.cor2_d
-                            elif self.cor1_e != 0.0 and self.cor2_d == 0.0:  #se a da esquerda for diferente e a direita for preta, vira para esquerda
+                            elif self.cor1_e != 521.1942621404501 and self.cor2_d == 521.1942621404501:  #se a da esquerda for diferente e a direita for preta, vira para esquerda
                                 self.velEsq = 1.0
                                 self.velDir = -1.0
                                 self.cor1_m = self.cor2_m
@@ -143,5 +168,4 @@ class TI502(MeuRobot):   #classe do robo
              
 robo = Robot() #cria o robo
 robot_controler = TI502(robo) #instancia o robo
-#_thread.start_new_thread(servidor, ('localhost',8080)) #chama a thread com o servidor
 robot_controler.run() #roda o robo 
