@@ -11,47 +11,29 @@ import base64 #imports de bibliotecas a serem utilizadas
 from aiohttp import web
 import socketio
 import os
+import threading
 
 TIME_STEP = 64
+sio = socketio.AsyncServer()
+app = web.Application()
 
-#def servidor(a,b): #metodo de conectar o servidor 
-#    c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#    c.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-#    c.bind((a, b))
-#    c.listen(1)
+def servidor(a,b): #metodo de conectar o servidor 
+    c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    c.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    c.bind((a, b))
+    c.listen(1)
 
-#    while True:
-#        csock, caddr = c.accept() 
-#        cfile = csock.makefile('rw')
-#        line = cfile.readline().strip() 
-#        data_uri = base64.b64encode(open('imagem/imagem.jpeg', 'rb').read()).decode('utf-8')
-#        cfile.write('HTTP/1.0 200 OK\n\n') 
-#        cfile.write((r'<html><head><title> Robo </title></head><body><img style="width:70%" src="data:image/png;base64,{0}"></body></html>').format(data_uri)) 
-#        cfile.close() 
-#        csock.close()
-def servidor(a,b):
-    jaPassou = False
     while True:
-        sio = socketio.AsyncServer()
-        app = web.Application()
-        sio.attach(app)
-        
-        async def index(request):
-            #with open(os.path.dirname(os.path.realpath(__file__)) + "/index.html") as f:
-           with open(os.path.dirname("G:\TopicosemAutomacaoeRobotica\robot-web-controller\Webots\controllers\carro_controller\index.html")) as f:
-                return web.Response(text=f.read(), content_type='text/html')
+        csock, caddr = c.accept() 
+        cfile = csock.makefile('rw')
+        line = cfile.readline().strip() 
+        data_uri = base64.b64encode(open('imagem/imagem.jpeg', 'rb').read()).decode('utf-8')
+        cfile.write('HTTP/1.0 200 OK\n\n') 
+        cfile.write((r"<!DOCTYPE html> <html lang='en'> <head> <meta charset='UTF-8'> <meta http-equiv='X-UA-Compatible' content='IE=edge'> <meta name='viewport' content='width=device-width, initial-scale=1.0'> <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>  <script src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js%27%3E</script>  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js%22%3E</script>  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js'    referrerpolicy='no-referrer'></script>  <title>Take a picture!</title></head><body>  <nav class='navbar navbar-expand-lg navbar-light bg-light' style='display: flex!important;-ms-flex-flow: row nowrap!important;    flex-flow: row nowrap!important;    -ms-flex-pack: start!important;    justify-content: flex-start!important;'>    <a class='navbar-brand' href='./index.html'>Robot Controller</a>    <div class='collapse navbar-collapse' style='display: flex!important;'>    </div>  </nav>  <div class='jumbotron'>    <div style='display: flex; justify-content: center;'    <p class='lead' style='margin: auto; '>This is a project for a simple controller for Webots. Only one function has been implemented for      now. </p>      </div>  </div>  <img class='picture img-fluid' style='width: 30%!important; margin: auto!important;'src='data:image/png;base64,{0}'>  <div    style='display: flex; position: fixed; height: auto; width: 100vw; bottom: 0; justify-content: center; margin-bottom: 2%;'>    <button onClick='window.location.reload();' type='button' class='btn btn-outline-dark'>Take a picture now!</button>  </div></body></html>").format(data_uri)) 
+        cfile.close() 
+        csock.close()
+           
 
-        @sio.on('message')
-        async def print_message(sid, message):
-            print(message)
-            if(message == "p"):
-            	await sio.emit('message', base64.b64encode(open('imagem/imagem.jpeg', 'rb').read()).decode('utf-8')) #botar a imagem em base64
-        
-        app.router.add_get('/', index)
-        
-        if __name__ == '__main__' and jaPassou == False:
-            jaPassou = True
-            web.run_app(app)
 
 class MeuRobot:
     def __init__(self, robo):   # Robo e seus componentes juntos...
@@ -158,6 +140,6 @@ class TI502(MeuRobot):   #classe do robo
             
              
 robo = Robot() #cria o robo
-# _thread.start_new_thread(servidor, ('salve', 'sergio')) #chama a thread com o servidor
+_thread.start_new_thread(servidor, ('localhost', 8080))
 robot_controler = TI502(robo) #instancia o robo
 robot_controler.run() #roda o robo 
