@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.997412193078187 0.005107163875331733 -0.07171355503746878 4.672394922150036
-  position 1.1245128199559606 3.3234559867086273 2.8398461415396388
+  orientation 0.1355066467113656 0.9515813147482316 0.275918375827106 3.75031658001898
+  position 0.39324586331448735 1.7160796729992331 -0.475434704086223
 }
 TexturedBackground {
 }
@@ -50,8 +50,8 @@ Solid {
   name "Percurso.obj"
 }
 Robot {
-  translation 1.2164 0.0296126 2.77951
-  rotation 0.013563600137389435 0.9999080101283431 -5.700040057737272e-06 0.00585472
+  translation 2.34842 0.0298159 1.17052
+  rotation 2.1291599980650977e-05 -0.9999999990912367 3.6934999966434827e-05 1.55551
   children [
     DEF DS_RIGHT_TRAS DistanceSensor {
       translation -0.0464811 0 -0.000763683
@@ -119,7 +119,7 @@ Robot {
     }
     DEF WHEEL1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 315.3726741885077
+        position 289.60062318152393
         anchor 0.06 0 0.05
       }
       device [
@@ -128,8 +128,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.05 3.997419774805151e-06 0.04999731824501043
-        rotation 0.49515915165020313 -0.4951609701020513 0.7138858649844851 1.9016267874531898
+        translation 0.05 1.6079136159698598e-06 0.049995462843568525
+        rotation 0.27217784835908027 -0.2721788473392953 0.9229506454430128 1.6508937359084968
         children [
           DEF WHEEL Shape {
             appearance PBRAppearance {
@@ -151,7 +151,7 @@ Robot {
     }
     DEF WHEEL2 HingeJoint {
       jointParameters HingeJointParameters {
-        position 237.9068969662106
+        position 276.0949189229324
         anchor -0.05 0 0.05
       }
       device [
@@ -160,8 +160,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.05 -3.9829636428513925e-06 0.04999753666973466
-        rotation -0.38287689390320173 0.38287826571892103 0.8407196427793916 1.7434330638637352
+        translation -0.05 -2.3594031228656807e-06 0.04999595460604141
+        rotation -0.17894066553117483 0.17894128689917843 0.9674503884241953 1.603885085486558
         children [
           USE WHEEL
         ]
@@ -173,7 +173,7 @@ Robot {
     }
     DEF WHEEL3 HingeJoint {
       jointParameters HingeJointParameters {
-        position 315.3727542908993
+        position 289.6007053990156
         anchor 0.06 0 -0.05
       }
       device [
@@ -182,8 +182,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.05 3.997304138554825e-06 -0.05000268151918163
-        rotation 0.4951807325901535 -0.4951825508917446 0.7138559261950715 1.9016664521107756
+        translation 0.05 1.6079711058206926e-06 -0.050004536894799355
+        rotation 0.272212978237861 -0.2722139769801416 0.92292992432553 1.6509161154322707
         children [
           USE WHEEL
         ]
@@ -195,7 +195,7 @@ Robot {
     }
     DEF WHEEL4 HingeJoint {
       jointParameters HingeJointParameters {
-        position 237.9069715818693
+        position 276.09499559565614
         anchor -0.06 0 -0.05
       }
       device [
@@ -204,8 +204,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.05 -3.982702695124234e-06 -0.050002463317777135
-        rotation -0.3828501078111418 0.38285151577819343 0.8407440227651558 1.7434044958549708
+        translation -0.05 -2.359170290298567e-06 -0.05000404526522867
+        rotation -0.17890474466196638 0.17890540345904157 0.9674636680261404 1.6038713759296503
         children [
           USE WHEEL
         ]
@@ -292,7 +292,7 @@ Robot {
       type "infra-red"
     }
     DistanceSensor {
-      translation 0.03 -0.00466 0.122
+      translation 0.0282362 -0.00468652 0.0937718
       rotation -0.3309160209104186 0.33435102112747456 0.882442055761074 -1.7017
       children [
         Transform {
@@ -319,7 +319,7 @@ Robot {
       type "infra-red"
     }
     DistanceSensor {
-      translation -0.03 -0.00466 0.122
+      translation -0.0308819 -0.00467326 0.107886
       rotation -0.3309160209104186 0.33435102112747456 0.882442055761074 -1.7017
       children [
         Transform {
@@ -354,8 +354,8 @@ Robot {
   controller "carro_controller"
 }
 Solid {
-  translation 0.42 0.049691809760728525 -0.03000000000000002
-  rotation -0.01721166402634518 0.9994095854715657 0.029736157939411412 -1.4417190968185997e-15
+  translation 1.21 0.0496918 3.16
+  rotation 0.0074305676713501195 0.9987430348251547 -0.04956951737027125 -1.6697502675661339e-15
   children [
     DEF obs Shape {
       geometry Cylinder {
@@ -369,8 +369,8 @@ Solid {
   }
 }
 Solid {
-  translation 0.12 0.04969180976072852 -0.17
-  rotation -0.04173375855783562 0.9882312695122489 0.14716402873951528 -2.972939123182341e-16
+  translation 0.12 0.04969180976068289 -0.17
+  rotation -0.24658461729197703 0.9404537067110061 0.23397190439986118 -3.0189699163706647e-16
   children [
     DEF obs Shape {
       geometry Cylinder {
@@ -385,8 +385,8 @@ Solid {
   }
 }
 Solid {
-  translation 1.20932 0.0496918 1.20841
-  rotation 9.913727750186005e-08 -0.9999997893941022 -0.0006490082751100779 2.018961368001176e-09
+  translation 1.22932 0.0496918 1.18841
+  rotation 1.9248591200319455e-08 -0.9999999999997509 -7.054942550397034e-07 2.0189609546803195e-09
   children [
     DEF obs Shape {
       geometry Cylinder {
@@ -433,319 +433,4 @@ Solid {
     }
   ]
   name "pista.obj"
-}
-Robot {
-  translation 1.46773 0.0422332 0.613537
-  rotation -0.010040649599445372 0.9998904218095037 -0.010877946921830218 -0.31829869441117853
-  children [
-    DEF body Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-      }
-      geometry Box {
-        size 0.1 0.01 0.25
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position 75.26514482132842
-        anchor 0.060001 7.11505e-06 0.05
-      }
-      device [
-        RotationalMotor {
-          name "motor_diant_esq"
-        }
-      ]
-      endPoint Solid {
-        translation 0.0600010018117803 7.1340093207230355e-06 0.049999987738660205
-        rotation -0.06639628761807034 0.06634351129781356 0.9955852909214836 1.5744248606136257
-        children [
-          DEF wheel Shape {
-            appearance PBRAppearance {
-              baseColor 0 0 0.498039
-            }
-            geometry Cylinder {
-              height 0.02
-              radius 0.04
-            }
-          }
-        ]
-        boundingObject USE wheel
-        physics Physics {
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position 148.98029236057351
-        anchor -0.06 0.000602968 0.060003
-      }
-      device [
-        RotationalMotor {
-          name "motor_diant_dir"
-        }
-      ]
-      endPoint Solid {
-        translation -0.06 0.0007465213588243834 0.060588637978784006
-        rotation -0.6193911596517835 0.6188981181598516 0.4830317905515256 2.241006477045942
-        children [
-          USE wheel
-        ]
-        name "solid(1)"
-        boundingObject USE wheel
-        physics Physics {
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position 75.26514446689376
-        anchor 0.06 3.088e-09 -0.05
-      }
-      device [
-        RotationalMotor {
-          name "motor_tras_esq"
-        }
-      ]
-      endPoint Solid {
-        translation 0.06 2.730401514195608e-11 -0.04999999959026329
-        rotation -0.06639664787415539 0.06634379548545725 0.9955852479580336 1.5744245177919909
-        children [
-          USE wheel
-        ]
-        name "solid(2)"
-        boundingObject USE wheel
-        physics Physics {
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position 148.9903531189962
-        anchor -0.06 2.163e-08 -0.05
-      }
-      device [
-        RotationalMotor {
-          name "motor_tras_dir"
-        }
-      ]
-      endPoint Solid {
-        translation -0.059999999999999984 2.667266058490132e-08 -0.049999978966016226
-        rotation -0.6178840916170768 0.617392249766207 0.4868737611077038 2.2347824995164207
-        children [
-          USE wheel
-        ]
-        name "solid(3)"
-        boundingObject USE wheel
-        physics Physics {
-        }
-      }
-    }
-    DistanceSensor {
-      translation 0.0300002 -0.06 0.12
-      rotation 0 0 1 1.5708
-      children [
-        Transform {
-          translation 0.05 -1.01962e-07 0
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "left_sensor"
-      recognitionColors [
-        0 0 0
-      ]
-      lookupTable [
-        0.01 1024 0
-        0.05 0 0
-      ]
-      type "infra-red"
-    }
-    DistanceSensor {
-      translation -0.0299998 -0.06 0.12
-      rotation 0 0 1 1.5708
-      children [
-        Transform {
-          translation 0.05 -1.01962e-07 0
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "right_sensor"
-      recognitionColors [
-        0 0 0
-      ]
-      lookupTable [
-        0.01 1024 0
-        0.05 0 0
-      ]
-      type "infra-red"
-    }
-    DistanceSensor {
-      translation 2e-07 -0.06 0.12
-      rotation 0 0 1 1.5708
-      children [
-        Transform {
-          translation 0.05 -1.01962e-07 0
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "main_sensor"
-      recognitionColors [
-        0 0 0
-      ]
-      lookupTable [
-        0.01 1024 0
-        0.05 0 0
-      ]
-      type "infra-red"
-    }
-    Camera {
-      translation -2.1684e-19 0.03 0.1
-      rotation 0 1 0 -3.1415853071795863
-      children [
-        Shape {
-          appearance PBRAppearance {
-          }
-          geometry Box {
-            size 0.04 0.04 0.04
-          }
-        }
-      ]
-      width 300
-      height 300
-    }
-    DistanceSensor {
-      translation -0.01 0 0.12
-      rotation 0 1 0 -2.6179953071795863
-      children [
-        Transform {
-          translation 0.01 1.01962e-08 0
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "top_right_obj"
-      lookupTable [
-        0.01 1024 0
-        0.1 1000 0
-      ]
-    }
-    DistanceSensor {
-      translation 5.19723e-15 0 0.12
-      rotation 0 -1 0 0.785397
-      children [
-        Transform {
-          translation 0.01 1.01962e-08 0
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "top_left_obj"
-      lookupTable [
-        0.01 1024 0
-        0.1 1000 0
-      ]
-    }
-    DistanceSensor {
-      translation -0.05 -8.22616e-07 0
-      rotation 0 0 1 3.14159
-      children [
-        Transform {
-          translation -3.17068e-09 -3.71073e-11 0
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "right_obj"
-    }
-    DistanceSensor {
-      translation 0.05 -1.16639e-06 8.71459e-08
-      rotation 1 -1.131e-06 -2.1786e-07 -3.1415853071795863
-      children [
-        Transform {
-          translation -3.17068e-09 -3.71073e-11 0
-          rotation 0 0 1 1.57
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "left_obj"
-    }
-  ]
-  name "robot(1)"
-  boundingObject DEF body Shape {
-    appearance PBRAppearance {
-      baseColor 0 1 0
-    }
-    geometry Box {
-      size 0.1 0.05 0.2
-    }
-  }
-  physics Physics {
-  }
-  controller "myRobot"
 }
